@@ -8,6 +8,8 @@ El git contiene:
 
 -Archivo zip de datos por tabla
 
--Còdigo sql para la creaciòn de tablas
+-Código sql para la creaciòn de tablas
 
--Còdigo sql para la carga de datos
+-Código sql para la carga de datos
+
+-Diagrama normalizado
