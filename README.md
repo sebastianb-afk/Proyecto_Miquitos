@@ -5,6 +5,9 @@ El git contiene:
 
 
 -CSV de la base de datos
+
 -Archivo zip de datos por tabla
+
 -Còdigo sql para la creaciòn de tablas
+
 -Còdigo sql para la carga de datos
