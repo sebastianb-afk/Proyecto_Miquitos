@@ -1,0 +1,151 @@
+-- Database generated with pgModeler (PostgreSQL Database Modeler).
+-- pgModeler version: 0.9.4
+-- PostgreSQL version: 12.0
+-- Project Site: pgmodeler.io
+-- Model Author: ---
+
+-- Database creation must be performed outside a multi lined SQL file. 
+-- These commands were put in this file only as a convenience.
+-- 
+-- object: new_database | type: DATABASE --
+-- DROP DATABASE IF EXISTS new_database;
+-- ddl-end --
+
+
+-- object: public.paciente | type: TABLE --
+-- DROP TABLE IF EXISTS public.paciente CASCADE;
+CREATE TABLE public.paciente (
+	id serial NOT NULL,
+	edad integer NOT NULL,
+	viajo integer NOT NULL,
+	pais_viaje integer NOT NULL,
+	pertenencia_etnica integer NOT NULL,
+	estrato integer NOT NULL,
+	id_seguridad_social integer,
+	id_sexo integer,
+	codigo_municipio_municipio integer,
+	CONSTRAINT paciente_pk PRIMARY KEY (id)
+);
+-- ddl-end --
+ALTER TABLE public.paciente OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.diagnosis | type: TABLE --
+-- DROP TABLE IF EXISTS public.diagnosis CASCADE;
+CREATE TABLE public.diagnosis (
+	id_paciente integer NOT NULL,
+	semana_epidemiologica integer NOT NULL,
+	"año_epidemiologico" integer NOT NULL,
+	fecha_notificacion date NOT NULL,
+	fecha_diagnosis date NOT NULL,
+	feha_sintomas date NOT NULL,
+	fecha_exantema date NOT NULL,
+	hospitalizacion integer NOT NULL,
+	condicion_final integer NOT NULL,
+	fecha_terminacion_seguimiento date NOT NULL,
+	id_fuente_infeccion integer,
+	CONSTRAINT diagnosis_pk PRIMARY KEY (id_paciente)
+);
+-- ddl-end --
+ALTER TABLE public.diagnosis OWNER TO postgres;
+-- ddl-end --
+
+-- object: paciente_fk | type: CONSTRAINT --
+-- ALTER TABLE public.diagnosis DROP CONSTRAINT IF EXISTS paciente_fk CASCADE;
+ALTER TABLE public.diagnosis ADD CONSTRAINT paciente_fk FOREIGN KEY (id_paciente)
+REFERENCES public.paciente (id) MATCH FULL
+ON DELETE CASCADE ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.sexo | type: TABLE --
+-- DROP TABLE IF EXISTS public.sexo CASCADE;
+CREATE TABLE public.sexo (
+	id integer NOT NULL,
+	sexo varchar(1) NOT NULL,
+	CONSTRAINT sexo_pk PRIMARY KEY (id)
+);
+-- ddl-end --
+ALTER TABLE public.sexo OWNER TO postgres;
+-- ddl-end --
+
+-- object: sexo_fk | type: CONSTRAINT --
+-- ALTER TABLE public.paciente DROP CONSTRAINT IF EXISTS sexo_fk CASCADE;
+ALTER TABLE public.paciente ADD CONSTRAINT sexo_fk FOREIGN KEY (id_sexo)
+REFERENCES public.sexo (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.seguridad_social | type: TABLE --
+-- DROP TABLE IF EXISTS public.seguridad_social CASCADE;
+CREATE TABLE public.seguridad_social (
+	tipo_seguridad_social varchar(1),
+	id integer NOT NULL,
+	CONSTRAINT seguridad_social_pk PRIMARY KEY (id)
+);
+-- ddl-end --
+ALTER TABLE public.seguridad_social OWNER TO postgres;
+-- ddl-end --
+
+-- object: seguridad_social_fk | type: CONSTRAINT --
+-- ALTER TABLE public.paciente DROP CONSTRAINT IF EXISTS seguridad_social_fk CASCADE;
+ALTER TABLE public.paciente ADD CONSTRAINT seguridad_social_fk FOREIGN KEY (id_seguridad_social)
+REFERENCES public.seguridad_social (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.fuente_infeccion | type: TABLE --
+-- DROP TABLE IF EXISTS public.fuente_infeccion CASCADE;
+CREATE TABLE public.fuente_infeccion (
+	id integer NOT NULL,
+	fuente_infecc varchar(40) NOT NULL,
+	CONSTRAINT fuente_infeccion_pk PRIMARY KEY (id)
+);
+-- ddl-end --
+ALTER TABLE public.fuente_infeccion OWNER TO postgres;
+-- ddl-end --
+
+-- object: fuente_infeccion_fk | type: CONSTRAINT --
+-- ALTER TABLE public.diagnosis DROP CONSTRAINT IF EXISTS fuente_infeccion_fk CASCADE;
+ALTER TABLE public.diagnosis ADD CONSTRAINT fuente_infeccion_fk FOREIGN KEY (id_fuente_infeccion)
+REFERENCES public.fuente_infeccion (id) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.municipio | type: TABLE --
+-- DROP TABLE IF EXISTS public.municipio CASCADE;
+CREATE TABLE public.municipio (
+	codigo_municipio integer NOT NULL,
+	codigo_departamento_departamento integer,
+	nombre_municipio varchar(30) NOT NULL,
+	CONSTRAINT municipio_pk PRIMARY KEY (codigo_municipio)
+);
+-- ddl-end --
+ALTER TABLE public.municipio OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.departamento | type: TABLE --
+-- DROP TABLE IF EXISTS public.departamento CASCADE;
+CREATE TABLE public.departamento (
+	codigo_departamento integer NOT NULL,
+	nombre_departamento varchar(30) NOT NULL,
+	CONSTRAINT departamento_pk PRIMARY KEY (codigo_departamento)
+);
+-- ddl-end --
+ALTER TABLE public.departamento OWNER TO postgres;
+-- ddl-end --
+
+-- object: departamento_fk | type: CONSTRAINT --
+-- ALTER TABLE public.municipio DROP CONSTRAINT IF EXISTS departamento_fk CASCADE;
+ALTER TABLE public.municipio ADD CONSTRAINT departamento_fk FOREIGN KEY (codigo_departamento_departamento)
+REFERENCES public.departamento (codigo_departamento) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: municipio_fk | type: CONSTRAINT --
+-- ALTER TABLE public.paciente DROP CONSTRAINT IF EXISTS municipio_fk CASCADE;
+ALTER TABLE public.paciente ADD CONSTRAINT municipio_fk FOREIGN KEY (codigo_municipio_municipio)
+REFERENCES public.municipio (codigo_municipio) MATCH FULL
+ON DELETE SET NULL ON UPDATE CASCADE;
+-- ddl-end --
+
+
