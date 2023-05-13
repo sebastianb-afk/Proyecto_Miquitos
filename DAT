@@ -1,0 +1,14 @@
+COPY fuente_infeccion FROM 'C:\Csvs Proyecto\fuente_inf.csv' DELIMITER ';';
+SELECT * FROM fuente_infeccion;
+COPY departamento FROM 'C:\Csvs Proyecto\dept.csv' DELIMITER ';';
+SELECT * FROM departamento;
+COPY municipio FROM 'C:\Csvs Proyecto\mpio.csv' DELIMITER ';';
+SELECT * FROM municipio;
+COPY sexo FROM 'C:\Csvs Proyecto\sexo.csv' DELIMITER ';';
+SELECT * FROM sexo;
+COPY seguridad_social FROM 'C:\Csvs Proyecto\segu.csv' DELIMITER ';';
+SELECT * FROM seguridad_social;
+COPY paciente (edad,viajo,pais_viaje,pertenencia_etnica,estrato,id_seguridad_social,id_sexo,codigo_municipio_municipio) FROM 'C:\Csvs Proyecto\paci.csv' DELIMITER ';';
+SELECT * FROM paciente;
+COPY diagnosis FROM 'C:\Csvs Proyecto\diagnosis.csv' DELIMITER ';';
+SELECT * FROM diagnosis;
