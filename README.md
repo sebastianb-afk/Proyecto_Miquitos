@@ -13,3 +13,7 @@ El git contiene:
 -Código sql para la carga de datos
 
 -Diagrama normalizado
+
+-Imagen de la base de datos normalizada hasta la 3FN.
+
+-Archivo python para la visualización de los datos de las tablas presentes en el sql.
