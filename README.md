@@ -16,4 +16,4 @@ El git contiene:
 
 -Imagen de la base de datos normalizada hasta la 3FN.
 
--Dos versiones de un archivo python para la visualización de los datos de las tablas presentes en el sql. En la primera versión tiene que digitar el nombre de la tabla que requiera, tal como una función, esto con la intención de visualizar tabla por tabla. En la segunda version, se veran todos los datos de todas las tablas al ejecutar. 
+-Dos versiones de un archivo python para la visualización de los datos de las tablas presentes en el sql.( En la primera versión tiene que digitar el nombre de la tabla que requiera, tal como una función, esto con la intención de visualizar tabla por tabla. En la segunda version, se veran todos los datos de todas las tablas al ejecutar.)
